@@ -4,6 +4,10 @@
 
 Dimensional Chaos is an AI-first design system for 3D scenes in Blender. Where AI-generated Blender scenes look like cube-on-a-plane, Dimensional Chaos bakes in taste: a four-axis aesthetic DNA — 7 modes × 8 palettes × 5 camera voices × 6 creative forces — that compiles into Blender Python via MCP.
 
+> **AI coding agents** (Claude, Codex, Cursor, Aider, …): read **[AGENTS.md](AGENTS.md)** first — machine-first contract with exhaustive enums, the Python API, the MCP tool sequence, parsing heuristics, and the pre-delivery checklist.
+> **Claude skill users:** see **[CLAUDE.md](CLAUDE.md)** (skill frontmatter + `/dimensional-chaos` invocation).
+> **Humans:** continue below.
+
 ---
 
 ## Table of Contents
