@@ -1,0 +1,48 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dimensional-chaos"
+version = "0.1.0"
+description = "Design system for AI-generated Blender 3D scenes."
+readme = "README.md"
+requires-python = ">=3.10"
+authors = [
+    { name = "Rayyan Zahid" },
+]
+license = { text = "Creative Commons" }
+keywords = [
+    "blender",
+    "3d",
+    "design-system",
+    "mcp",
+    "ai",
+    "generative",
+    "taste-engine",
+]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Multimedia :: Graphics :: 3D Rendering",
+]
+dependencies = [
+    "pyyaml>=6.0",
+    "requests>=2.28",
+]
+
+[project.urls]
+Homepage = "https://github.com/RayyanZahid/dimensional-chaos"
+Repository = "https://github.com/RayyanZahid/dimensional-chaos"
+Issues = "https://github.com/RayyanZahid/dimensional-chaos/issues"
+
+[project.scripts]
+dimensional = "engine.__main__:cli"
+
+[tool.setuptools.packages.find]
+include = ["engine*", "assets*", "showcase*"]
+exclude = ["tests*", "render*", "docs*"]

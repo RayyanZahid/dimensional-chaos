@@ -1,0 +1,267 @@
+# ═══════════════════════════════════════════════════════════
+# DIMENSIONAL CHAOS — VISUAL LANGUAGE
+# Maps the 3D design system vocabulary → Meshy text-to-image
+# and text-to-3D prompts. Modes set treatment. Palettes set
+# light and color. Forces add tension. Aspect ratios frame
+# the context.
+#
+# Prompt template (assembled in engine/):
+#   "{subject}, {mode.keywords}, {palette.color_keywords},
+#    {palette.light_keywords}, {force.modifier_phrase},
+#    rendered in Blender, {reference_artists},
+#    {negative_prompt}"
+# ═══════════════════════════════════════════════════════════
+
+# ── MODES — Treatment vocabulary for prompt assembly ──
+modes:
+
+  claymation_warmth:
+    keywords:
+      - "claymation stop-motion"
+      - "hand-sculpted"
+      - "visible fingerprints"
+      - "plasticine surface"
+      - "warm tactile imperfection"
+      - "stepped animation feel"
+    reference_artists:
+      - "Laika Studios"
+      - "Aardman Animations"
+      - "Henry Selick"
+      - "80.lv Talent of Clay"
+    negative_prompt: "smooth CGI, polished, machine-precise, sterile, digital perfection, plastic"
+    preferred_aspect: "macro"
+
+  studio_ghibli_nature:
+    keywords:
+      - "painterly 3D"
+      - "Ghibli-style foliage"
+      - "toon-shaded nature"
+      - "hand-drawn feel"
+      - "dense particle grass"
+      - "overcast painterly light"
+    reference_artists:
+      - "Hayao Miyazaki"
+      - "Studio Ghibli"
+      - "Kazuo Oga background paintings"
+      - "NPS 3D research"
+    negative_prompt: "photorealistic, metallic, neon, urban, sterile, HDR"
+    preferred_aspect: "wide"
+
+  brutalist_sculpture:
+    keywords:
+      - "raw concrete"
+      - "monolithic architecture"
+      - "brutalist mass"
+      - "hard shadow"
+      - "exposed aggregate"
+      - "no ornament"
+    reference_artists:
+      - "Tadao Ando"
+      - "Le Corbusier"
+      - "Zaki Ullah"
+      - "Marcel Breuer"
+    negative_prompt: "ornate, decorated, colorful, soft, organic, plush, shiny"
+    preferred_aspect: "hero"
+
+  plushcore_soft:
+    keywords:
+      - "felt fabric"
+      - "visible stitching"
+      - "rounded squish"
+      - "velvet sheen"
+      - "cloth simulation"
+      - "stuffed plush"
+    reference_artists:
+      - "Sanrio product design"
+      - "Jellycat plush"
+      - "2026 plushcore TikTok trend"
+      - "Kittl design research"
+    negative_prompt: "sharp, metallic, hard-edged, industrial, chrome, concrete"
+    preferred_aspect: "macro"
+
+  hyperreal_chrome:
+    keywords:
+      - "liquid chrome"
+      - "thin-film iridescence"
+      - "product photography"
+      - "polished metal"
+      - "octane render"
+      - "anisotropic highlights"
+    reference_artists:
+      - "Peter Tarka"
+      - "Octane 2026 demo reels"
+      - "Apple product photography"
+      - "Benjamin Parry"
+    negative_prompt: "matte, rough, handmade, imperfect, dusty, low-poly"
+    preferred_aspect: "hero"
+
+  liminal_lowpoly:
+    keywords:
+      - "PS1-era low-poly"
+      - "pixelated textures"
+      - "hard flat normals"
+      - "empty mall space"
+      - "fluorescent volumetric fog"
+      - "UV shimmer"
+    reference_artists:
+      - "Kane Pixels Backrooms"
+      - "PS1 Silent Hill"
+      - "dead mall photography"
+      - "kurzgesagt early style"
+    negative_prompt: "high-poly, smooth, photoreal, HDR, organic detail, painterly"
+    preferred_aspect: "wide"
+
+  isometric_diorama:
+    keywords:
+      - "isometric 3D"
+      - "tiny world diorama"
+      - "tabletop miniature"
+      - "orthographic camera"
+      - "modular tile base"
+      - "top-down 45-degree"
+    reference_artists:
+      - "Mohamed Chahin"
+      - "Monument Valley"
+      - "BlenderNation weekly features"
+      - "Matthias Zarzecki"
+    negative_prompt: "perspective distortion, low-angle, handheld, wide-angle lens, photorealistic humans"
+    preferred_aspect: "diorama"
+
+# ── PALETTES — Color and light vocabulary for prompt assembly ──
+palettes:
+
+  golden_hour_valley:
+    color_keywords:
+      - "amber #d4a574"
+      - "peach #c27b5c"
+      - "warm cream"
+      - "bruised lavender accent"
+    light_keywords:
+      - "2800K golden hour sun"
+      - "8000K sky fill"
+      - "long raking shadows"
+      - "atmospheric dust motes"
+
+  neon_nightmare:
+    color_keywords:
+      - "hot pink #ff0066"
+      - "cyan #00ccff"
+      - "oil-slick black"
+      - "magenta gel accents"
+    light_keywords:
+      - "neon tube lighting"
+      - "cyan and magenta gels"
+      - "3200K key"
+      - "volumetric haze density 0.12"
+
+  fog_valley:
+    color_keywords:
+      - "desaturated teal #4a6a6e"
+      - "bone white #e8e4d9"
+      - "slate gray"
+    light_keywords:
+      - "6500K overcast"
+      - "volumetric fog density 0.15"
+      - "diffuse wraparound light"
+      - "no hard shadows"
+
+  overcast_studio:
+    color_keywords:
+      - "clean white #f5f5f2"
+      - "warm gray"
+      - "black contrast"
+    light_keywords:
+      - "5600K diffuse softbox"
+      - "studio overcast HDRI"
+      - "shadowless product lighting"
+      - "color-accurate"
+
+  sodium_vapor_liminal:
+    color_keywords:
+      - "piss-yellow #d4b647"
+      - "vending machine glow"
+      - "grime black"
+    light_keywords:
+      - "2200K sodium vapor"
+      - "4100K fluorescent fill"
+      - "volumetric density 0.18"
+      - "unhealthy artificial glow"
+
+  moonlit_concrete:
+    color_keywords:
+      - "inky blue-black #0d1117"
+      - "slate silver"
+      - "white highlight edges"
+    light_keywords:
+      - "4200K cool moon"
+      - "zero fill light"
+      - "long architectural shadow"
+      - "volumetric density 0.08"
+
+  iridescent_candy:
+    color_keywords:
+      - "bubblegum pink #ff9bc6"
+      - "holographic blue #b8e6ff"
+      - "mint green #a8f0c8"
+    light_keywords:
+      - "4800K multi-point key"
+      - "chrome HDRI reflection"
+      - "soft wraparound"
+      - "thin-film iridescence"
+
+  bruised_sunset:
+    color_keywords:
+      - "violet #6b4b8a"
+      - "rust #c73e1d"
+      - "brass #a8864a"
+      - "coral #e8836e"
+    light_keywords:
+      - "3800K warm key"
+      - "deep magenta rim light"
+      - "5500K sky fill 0.4"
+      - "golden haze"
+
+# ── FORCES — Modifier phrases appended to prompts ──
+forces:
+
+  scale_distortion:
+    modifier_phrase: "extreme scale distortion, bug's-eye perspective or drone-god view, familiar object at impossible size"
+
+  light_as_character:
+    modifier_phrase: "lighting as protagonist, single raking beam, volumetric god-rays, light stronger than the subject"
+
+  material_contrast:
+    modifier_phrase: "two impossible materials touching, chrome against wool, wet concrete against velvet, glass against clay"
+
+  negative_space:
+    modifier_phrase: "70% empty frame, tiny subject in vast space, reverent breathing room, atmospheric dissolve"
+
+  impossible_physics:
+    modifier_phrase: "defies gravity believably, frozen fluid mid-splash, floating mass, inverted fall, impossible staircase"
+
+  hand_evidence:
+    modifier_phrase: "visible imperfection, thumbprints, wobble, stretched UVs, intentional flaw, anti-AI handmade signal"
+
+# ── ASPECT RATIOS — Named sizes mapped to use cases ──
+aspect_ratios:
+  hero: "16:9"         # hero banners, cinematic wide
+  macro: "1:1"         # intimate macro, product close-up, social grid
+  wide: "21:9"         # ultra-wide cinema, architectural sweep
+  diorama: "4:3"       # isometric tiny worlds, editorial editorial
+  portrait: "9:16"     # vertical scroll, mobile hero
+  og: "1200x630"       # social share cards
+
+# ── PROMPT TEMPLATE ──
+# Assembled from:
+#   subject + mode.keywords + palette.color_keywords +
+#   palette.light_keywords + forces[].modifier_phrase +
+#   "rendered in Blender" + mode.reference_artists +
+#   mode.negative_prompt
+#
+# Example (claymation_warmth + golden_hour_valley + hand_evidence):
+#   "a weathered rotary phone, claymation stop-motion, hand-sculpted,
+#    visible fingerprints, amber #d4a574, peach #c27b5c,
+#    2800K golden hour sun, long raking shadows,
+#    visible imperfection, thumbprints, intentional flaw,
+#    rendered in Blender, Laika Studios style, Aardman Animations,
+#    negative: smooth CGI, polished, machine-precise, sterile"

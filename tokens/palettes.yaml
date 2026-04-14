@@ -1,0 +1,213 @@
+# ═══════════════════════════════════════════════════════════
+# DIMENSIONAL CHAOS — PALETTES
+# Lighting + color worlds. A palette is more than hex codes —
+# it's a Kelvin value, a volumetric density, and an HDRI.
+# All HDRI slugs are real Poly Haven assets.
+# ═══════════════════════════════════════════════════════════
+
+palettes:
+
+  golden_hour_valley:
+    name: "Golden Hour Valley"
+    lighting:
+      sun_kelvin: 2800
+      sky_kelvin: 8000
+      fill_strength: 0.3
+      hdri_slug: "sunset_in_the_chalk_quarry_2k"
+      volumetrics:
+        density: 0.03
+        anisotropy: 0.6
+    colors:
+      dominant:
+        - "#d4a574"  # amber
+        - "#c27b5c"  # peach
+        - "#e8c998"  # warm cream
+      accent:
+        - "#8a6a9e"  # bruised lavender
+        - "#6b4b8a"  # violet shadow
+      shadow: "#2a1f14"
+    compatible_modes:
+      - claymation_warmth
+      - studio_ghibli_nature
+      - plushcore_soft
+      - isometric_diorama
+    feel: "The last good hour of the day; everything touched by this light forgives itself."
+
+  neon_nightmare:
+    name: "Neon Nightmare"
+    lighting:
+      sun_kelvin: 3200
+      sky_kelvin: 4000
+      fill_strength: 0.8
+      hdri_slug: "neon_photostudio_2k"
+      volumetrics:
+        density: 0.12
+        anisotropy: 0.3
+    colors:
+      dominant:
+        - "#ff0066"  # hot pink
+        - "#00ccff"  # cyan
+        - "#0a0a0f"  # oil-slick black
+      accent:
+        - "#ff00aa"  # magenta gel
+        - "#00ff88"  # signal green
+      shadow: "#050510"
+    compatible_modes:
+      - hyperreal_chrome
+      - liminal_lowpoly
+      - brutalist_sculpture
+    feel: "3am in a city that refuses to sleep; every surface is a screen, every screen is a warning."
+
+  fog_valley:
+    name: "Fog Valley"
+    lighting:
+      sun_kelvin: 6500
+      sky_kelvin: 6500
+      fill_strength: 1.0
+      hdri_slug: "kloofendal_overcast_puresky_2k"
+      volumetrics:
+        density: 0.15
+        anisotropy: 0.1
+    colors:
+      dominant:
+        - "#4a6a6e"  # desaturated teal
+        - "#e8e4d9"  # bone
+        - "#5a5e66"  # slate
+      accent:
+        - "#8a9ba0"  # fog blue
+        - "#3a4a50"  # deep teal
+      shadow: "#1e2428"
+    compatible_modes:
+      - studio_ghibli_nature
+      - brutalist_sculpture
+      - liminal_lowpoly
+      - isometric_diorama
+    feel: "Morning hasn't decided yet; the world is waiting to resolve."
+
+  overcast_studio:
+    name: "Overcast Studio"
+    lighting:
+      sun_kelvin: 5600
+      sky_kelvin: 5600
+      fill_strength: 1.0
+      hdri_slug: "studio_small_08_2k"
+      volumetrics:
+        density: 0.0
+        anisotropy: 0.0
+    colors:
+      dominant:
+        - "#f5f5f2"  # clean white
+        - "#78786e"  # warm gray
+        - "#1a1a18"  # black
+      accent:
+        - "#d8d8d2"  # paper
+        - "#4a4a44"  # mid gray
+      shadow: "#0a0a08"
+    compatible_modes:
+      - hyperreal_chrome
+      - brutalist_sculpture
+      - isometric_diorama
+      - studio_ghibli_nature
+    feel: "The subject, isolated; nothing competes for attention."
+
+  sodium_vapor_liminal:
+    name: "Sodium Vapor Liminal"
+    lighting:
+      sun_kelvin: 2200
+      sky_kelvin: 4100
+      fill_strength: 0.2
+      hdri_slug: "empty_warehouse_01_2k"
+      volumetrics:
+        density: 0.18
+        anisotropy: 0.4
+    colors:
+      dominant:
+        - "#d4b647"  # piss-yellow
+        - "#f5e6a0"  # vending glow
+        - "#1c1a14"  # grime
+      accent:
+        - "#a08a30"  # dim sodium
+        - "#2a2820"  # greasy shadow
+      shadow: "#0a0806"
+    compatible_modes:
+      - liminal_lowpoly
+      - brutalist_sculpture
+      - hyperreal_chrome
+    feel: "A parking lot at 2am; the lights are on but no one's home."
+
+  moonlit_concrete:
+    name: "Moonlit Concrete"
+    lighting:
+      sun_kelvin: 4200
+      sky_kelvin: 4200
+      fill_strength: 0.0
+      hdri_slug: "moonless_golf_2k"
+      volumetrics:
+        density: 0.08
+        anisotropy: 0.2
+    colors:
+      dominant:
+        - "#0d1117"  # inky blue-black
+        - "#5a6068"  # slate
+        - "#f0f4f8"  # white highlight
+      accent:
+        - "#1e2a3a"  # deep blue
+        - "#8a95a0"  # silver edge
+      shadow: "#04060a"
+    compatible_modes:
+      - brutalist_sculpture
+      - liminal_lowpoly
+      - hyperreal_chrome
+    feel: "Architecture under moonlight; the building becomes a monument to itself."
+
+  iridescent_candy:
+    name: "Iridescent Candy"
+    lighting:
+      sun_kelvin: 4800
+      sky_kelvin: 5500
+      fill_strength: 0.9
+      hdri_slug: "small_empty_house_2k"
+      volumetrics:
+        density: 0.02
+        anisotropy: 0.5
+    colors:
+      dominant:
+        - "#ff9bc6"  # bubblegum
+        - "#b8e6ff"  # holographic
+        - "#a8f0c8"  # mint
+      accent:
+        - "#e8a0ff"  # lavender candy
+        - "#ffd8a0"  # peach cream
+      shadow: "#4a3a5a"
+    compatible_modes:
+      - hyperreal_chrome
+      - plushcore_soft
+      - isometric_diorama
+      - claymation_warmth
+    feel: "A dream you had as a child about a flavor that doesn't exist yet."
+
+  bruised_sunset:
+    name: "Bruised Sunset"
+    lighting:
+      sun_kelvin: 3800
+      sky_kelvin: 5500
+      fill_strength: 0.4
+      hdri_slug: "belfast_sunset_2k"
+      volumetrics:
+        density: 0.06
+        anisotropy: 0.5
+    colors:
+      dominant:
+        - "#6b4b8a"  # violet
+        - "#c73e1d"  # rust
+        - "#a8864a"  # brass
+      accent:
+        - "#e8836e"  # coral
+        - "#8a4a3a"  # dried blood
+      shadow: "#1a0e1a"
+    compatible_modes:
+      - claymation_warmth
+      - plushcore_soft
+      - studio_ghibli_nature
+      - brutalist_sculpture
+    feel: "Something beautiful happened here; something also broke."

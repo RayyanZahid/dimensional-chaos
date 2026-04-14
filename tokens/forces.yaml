@@ -1,0 +1,127 @@
+# ═══════════════════════════════════════════════════════════
+# DIMENSIONAL CHAOS — FORCES
+# Forces are tensions, not settings. A recipe picks 2-3 forces
+# and lets them pull against each other. Pick too many and
+# the frame tears apart. Pick too few and it goes to sleep.
+# ═══════════════════════════════════════════════════════════
+
+forces:
+
+  scale_distortion:
+    name: "Scale Distortion"
+    tension: "Tiny feels monumental or monumental feels tiny. The viewer's sense of size is deliberately broken."
+    how_it_shows: "A coin the size of a cathedral. A city the size of a fingernail. Nothing is the size you expect."
+    blender_hooks:
+      - "Use extreme focal lengths: 8mm fisheye for claustrophobic, 400mm telephoto for compressed"
+      - "Place camera at 0.05m height (bug's-eye) or 50m height (drone-god)"
+      - "Scale the scene by 0.1x or 10x in one axis only"
+      - "Add a familiar object at 'wrong' scale — a pencil next to a building, a human next to a strawberry"
+      - "Use macro focus distance (0.2m) on an object the scene treats as huge"
+    compatible_modes:
+      - isometric_diorama
+      - brutalist_sculpture
+      - hyperreal_chrome
+      - claymation_warmth
+    incompatible_modes:
+      - studio_ghibli_nature  # Ghibli's scale is always honest; breaks the mood
+    overuse_warning: "Every shot scale-distorted becomes a gimmick. Use once per sequence, maximum."
+
+  light_as_character:
+    name: "Light as Character"
+    tension: "The lighting does the acting. The light is the protagonist, the object is the stage."
+    how_it_shows: "A single beam crossing a dark room. Volumetric god-rays that feel like a presence. A screen-glow on a face, the screen itself invisible."
+    blender_hooks:
+      - "Single raking beam: spot light, 5° cone, angled at 70° from subject normal"
+      - "Volumetric god-rays: area light through a cucoloris gobo, density 0.3"
+      - "Key light strength >3x the scene's average intensity"
+      - "Color-separated lighting: warm key (3200K) + cool fill (7000K) for cinematic duality"
+      - "Flicker: keyframe light strength with noise for fluorescent/fire/CRT"
+    compatible_modes:
+      - liminal_lowpoly
+      - brutalist_sculpture
+      - hyperreal_chrome
+      - claymation_warmth
+    incompatible_modes:
+      - isometric_diorama  # ortho flat-light is the point; dramatic beams fight the format
+      - studio_ghibli_nature  # overcast is the voice; drama breaks the world
+    overuse_warning: "If every object has its own spotlight, nothing is illuminated. Pick ONE hero beam per frame."
+
+  material_contrast:
+    name: "Material Contrast"
+    tension: "Two surfaces that shouldn't touch, touching. The PBR equivalent of dissonance."
+    how_it_shows: "Chrome against wool. Wet concrete against velvet. Glass against raw clay. The eye can't resolve the combination and keeps looking."
+    blender_hooks:
+      - "Pair diametrically opposed PBR values: roughness 0.05 touching roughness 0.95"
+      - "Pair metallic 1.0 with subsurface 0.8 in the same frame"
+      - "Place the two materials within one subject's silhouette"
+      - "Use the contrast boundary as the focal point (rule-of-thirds intersection)"
+      - "Light both materials with the same HDRI so the contrast is material, not lighting"
+    compatible_modes:
+      - hyperreal_chrome
+      - claymation_warmth
+      - plushcore_soft
+      - brutalist_sculpture
+    incompatible_modes:
+      - liminal_lowpoly  # the shader is flat by design; PBR contrast doesn't read
+    overuse_warning: "Three contrasts in one frame is a thrift store. Two materials per hero subject."
+
+  negative_space:
+    name: "Negative Space"
+    tension: "60%+ of the frame is empty. The absence is the composition."
+    how_it_shows: "A tiny subject in a vast field. A figure at the bottom-third of a cathedral. Breathing room that reads as reverence."
+    blender_hooks:
+      - "Subject placed at rule-of-thirds intersection, no closer to center"
+      - "70%+ of frame is flat, empty, or gradient (sky, wall, fog, void)"
+      - "Subject occupies <15% of frame area"
+      - "Use atmospheric perspective (volumetric fog density 0.2+) to dissolve the space"
+      - "Camera FOV wide (24mm or wider) to maximize the void"
+    compatible_modes:
+      - brutalist_sculpture
+      - studio_ghibli_nature
+      - liminal_lowpoly
+      - isometric_diorama
+    incompatible_modes:
+      - hyperreal_chrome  # product shots want the subject large; empty space reads as cheap
+      - plushcore_soft  # plushcore is maximalist; empty space is cold
+    overuse_warning: "Empty can become empty-feeling. The void needs a subject strong enough to earn it."
+
+  impossible_physics:
+    name: "Impossible Physics"
+    tension: "The scene defies gravity or fluid dynamics, but believably. The eye knows it's wrong; the eye doesn't care."
+    how_it_shows: "A frozen splash mid-air. A staircase that loops. A mass that floats. Gravity pulling sideways. Water flowing up."
+    blender_hooks:
+      - "Fluid sim (Mantaflow) baked and paused at peak splash frame"
+      - "Escher geometry: boolean a staircase into itself, use viewport camera hack"
+      - "Rigid body sim with gravity vector (0, 0, +9.8) for up-ward falling"
+      - "Frozen cloth sim mid-billow, pinned to invisible wind source"
+      - "Particle emission from a surface that shouldn't emit (skin, concrete, paper)"
+    compatible_modes:
+      - hyperreal_chrome
+      - claymation_warmth
+      - liminal_lowpoly
+      - isometric_diorama
+    incompatible_modes:
+      - brutalist_sculpture  # the mass is the point; floating mass is a different mode
+      - studio_ghibli_nature  # magic is OK but physics is always honest in Ghibli
+    overuse_warning: "One impossibility per frame. Two and it's a video game cutscene."
+
+  hand_evidence:
+    name: "Hand Evidence"
+    tension: "Visible imperfection, intentionally left in. The anti-AI signal."
+    how_it_shows: "Thumbprints. Wobble. Stretched UVs. Polygon counts you can actually see. A seam that wasn't cleaned up."
+    blender_hooks:
+      - "Apply a displace modifier with hand-painted noise texture, strength 0.02"
+      - "Intentionally stretch UVs on one face per asset — leave the warp visible"
+      - "Add procedural wobble to keyframed animations (Noise modifier, amplitude 0.02)"
+      - "Keep visible poly count — disable auto-smooth on a signature surface"
+      - "Bake a 'thumbprint' noise map into the normal map of organic assets"
+      - "Leave one modifier unapplied so the non-destructive history is visible in Outliner"
+    compatible_modes:
+      - claymation_warmth
+      - studio_ghibli_nature
+      - plushcore_soft
+      - liminal_lowpoly
+    incompatible_modes:
+      - hyperreal_chrome  # chrome's whole point is precision; hand evidence = chip in the paint
+      - isometric_diorama  # ortho dioramas want grid-perfect; imperfection reads as error
+    overuse_warning: "Too much hand and it looks broken, not crafted. One deliberate flaw per hero asset."

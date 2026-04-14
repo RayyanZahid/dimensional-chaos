@@ -1,0 +1,297 @@
+# ═══════════════════════════════════════════════════════════
+# DIMENSIONAL CHAOS — MODES
+# The aesthetic treatment applied to a Blender 3D scene.
+# Each mode is a complete rendering philosophy: geometry,
+# shader, light, and the ONE anomaly that keeps it alive.
+#
+# Sibling to Controlled Chaos. 3D is the medium.
+# The rule: pick a mode, commit, then break it once.
+# ═══════════════════════════════════════════════════════════
+
+modes:
+
+  claymation_warmth:
+    name: "Claymation Warmth"
+    description: "Hand-pressed, fingerprint-visible, stop-motion stepped animation. The surface remembers the hand that made it."
+    reference: "Laika Studios, Aardman Animations, 80.lv 'Talent of Clay' feature"
+    blender:
+      render_engine: "CYCLES"
+      samples: 256
+      geometry:
+        base_modifier: "SUBSURF"
+        subsurf_levels: 2
+        displace_modifier: true
+        displace_texture: "VORONOI"
+        displace_strength: 0.02
+        bevel_segments: 3
+        bevel_width: 0.008
+      shader:
+        base: "Principled BSDF"
+        roughness: 0.62
+        sheen: 0.3
+        sheen_tint: 0.15
+        subsurface: 0.08
+        subsurface_color: "#d4a574"
+        specular: 0.35
+      framerate:
+        target_fps: 24
+        step_frames: 12  # holds every frame for 12 frames = 2fps feel over 24fps playback
+        on_twos: false
+        on_twelves: true
+      post:
+        film_grain: 0.04
+        color_grade: "warm_shift_+200k"
+    discord_ingredient: "ONE perfectly smooth, machine-precise element (a polished chrome bolt, a glass lens) placed inside the clay world"
+    compatible_palettes:
+      - golden_hour_valley
+      - bruised_sunset
+      - iridescent_candy
+    compatible_voices:
+      - intimate_macro
+      - dolly_cinematic
+      - dutch_drama
+    philosophy: "Evidence of the hand is the soul of the frame; the thumbprint is the signature."
+
+  studio_ghibli_nature:
+    name: "Studio Ghibli Nature"
+    description: "Painterly foliage, hand-shaded toon ramps, overcast soft light through a million leaves. Nature as character."
+    reference: "Miyazaki Tribute shorts, NPS 3D (non-photorealistic shading), My Neighbor Totoro environments"
+    blender:
+      render_engine: "EEVEE_NEXT"
+      samples: 128
+      geometry:
+        hair_particle_system: true
+        hair_count: 50000
+        hair_length: 0.08
+        hair_distribution: "dense_short"
+        leaves_as_instanced_geometry: true
+      shader:
+        base: "Shader to RGB + ColorRamp"
+        toon_ramp_bands: 2
+        toon_ramp_stops: [0.0, 0.5, 0.5, 1.0]
+        freestyle: true
+        freestyle_line_thickness: 0.4
+        freestyle_color: "#2a1f14"
+      framerate:
+        target_fps: 24
+        step_frames: 1
+      post:
+        hdri_slug: "kloofendal_overcast_puresky_2k"
+        hdri_strength: 1.0
+        bloom: 0.15
+        painterly_filter: true
+    discord_ingredient: "ONE piece of visible technology (a pylon, a satellite dish, a cable) that the nature is slowly swallowing"
+    compatible_palettes:
+      - fog_valley
+      - golden_hour_valley
+      - overcast_studio
+    compatible_voices:
+      - architectural_wide
+      - dolly_cinematic
+      - gods_eye_ortho
+    philosophy: "The wind is always blowing; stillness is the anomaly, not the default."
+
+  brutalist_sculpture:
+    name: "Brutalist Sculpture"
+    description: "Raw concrete, monolithic mass, shadow used as weight. Architecture photographed like a body."
+    reference: "Zaki Ullah concrete studies, Brutalist Dystopia kitbash, Tadao Ando documentation"
+    blender:
+      render_engine: "CYCLES"
+      samples: 2048
+      geometry:
+        base_modifier: "NONE"
+        bevel_on_primary_edges: false
+        bevel_on_secondary_edges: true
+        secondary_bevel_width: 0.002
+        boolean_cuts: true
+      shader:
+        base: "Principled BSDF"
+        base_color: "#8a8680"
+        pbr_albedo_texture: "concrete_wall_008_2k_diffuse"
+        roughness: 0.85
+        bump_strength: 0.3
+        normal_map: "concrete_wall_008_2k_normal"
+        specular: 0.15
+      framerate:
+        target_fps: 24
+        step_frames: 1
+      post:
+        single_sun_light: true
+        sun_kelvin: 5600
+        sun_angle_degrees: 45
+        sun_strength: 5.0
+        ambient_occlusion: 0.8
+        ao_distance: 2.0
+    discord_ingredient: "ONE soft organic object (a single flower, a draped cloth, a living hand) against the concrete"
+    compatible_palettes:
+      - moonlit_concrete
+      - overcast_studio
+      - fog_valley
+      - sodium_vapor_liminal
+    compatible_voices:
+      - architectural_wide
+      - gods_eye_ortho
+      - dutch_drama
+    philosophy: "Mass is moral; the shadow on the wall is as real as the wall itself."
+
+  plushcore_soft:
+    name: "Plushcore Soft"
+    description: "Felt, visible stitching, squish, everything rounded. A world made of comfort objects."
+    reference: "2026 TikTok plushcore trend (Kittl design research), Sanrio product photography, Jellycat plush catalog"
+    blender:
+      render_engine: "CYCLES"
+      samples: 512
+      geometry:
+        base_modifier: "BEVEL"
+        bevel_segments: 4
+        bevel_width: 0.05
+        bevel_limit_method: "ANGLE"
+        bevel_limit_angle_degrees: 30
+        cloth_simulation: true
+        cloth_resolution: "low"
+        cloth_quality_steps: 5
+      shader:
+        base: "Velvet BSDF + Sheen BSDF mix"
+        sheen: 0.8
+        sheen_tint: 0.2
+        velvet_sigma: 1.0
+        fuzz_geometry_nodes: true
+        stitching_decal_overlay: true
+      framerate:
+        target_fps: 24
+        step_frames: 1
+      post:
+        key_light_kelvin: 3200
+        key_light_strength: 3.0
+        fill_wrap: 0.6
+    discord_ingredient: "ONE sharp hard-edged industrial object (a razor, a metal hinge, a wrench) that must NOT be plush"
+    compatible_palettes:
+      - iridescent_candy
+      - bruised_sunset
+      - golden_hour_valley
+    compatible_voices:
+      - intimate_macro
+      - dolly_cinematic
+    philosophy: "Everything in this world wants to be hugged; the one thing that doesn't is the story."
+
+  hyperreal_chrome:
+    name: "Hyperreal Chrome"
+    description: "Liquid metal surfaces, thin-film iridescence, product-photography cleanliness. Octane-grade chrome."
+    reference: "Peter Tarka Product Explorations 2026, Octane 2026 demo reels, Apple product shots"
+    blender:
+      render_engine: "CYCLES"
+      samples: 4096
+      geometry:
+        base_modifier: "SUBSURF"
+        subsurf_levels: 3
+        bevel_segments: 6
+        bevel_width: 0.003
+        smooth_shading: true
+      shader:
+        base: "Principled BSDF"
+        metallic: 1.0
+        roughness: 0.05
+        anisotropic: 0.3
+        anisotropic_rotation: 0.0
+        thin_film_thickness_nm: 550
+        thin_film_range_nm: [380, 750]
+        thin_film_ior: 1.45
+      framerate:
+        target_fps: 30
+        step_frames: 1
+      post:
+        hdri_slug: "studio_small_08_2k"
+        hdri_strength: 1.2
+        camera_lens_mm: 85
+        camera_aperture: 2.8
+        depth_of_field: true
+        color_grade: "clean_product"
+    discord_ingredient: "ONE deeply matte, fingerprint-smudged, imperfect surface that kills the reflection"
+    compatible_palettes:
+      - iridescent_candy
+      - neon_nightmare
+      - overcast_studio
+    compatible_voices:
+      - intimate_macro
+      - dolly_cinematic
+    philosophy: "The chrome must reflect something worth reflecting; otherwise it's just expensive emptiness."
+
+  liminal_lowpoly:
+    name: "Liminal Lowpoly"
+    description: "Empty pool halls, PS1-era UV shimmer, 90s mall carpet. Spaces where nothing happens but something watches."
+    reference: "Kane Pixels Backrooms series, PS1 Silent Hill environments, dead mall photography"
+    blender:
+      render_engine: "EEVEE_NEXT"
+      samples: 64
+      geometry:
+        flat_shading: true
+        hard_normals: true
+        subdivision: false
+        triangulate: true
+        polygon_budget: 2500
+      shader:
+        base: "Diffuse BSDF"
+        texture_resolution_px: 256
+        texture_interpolation: "Closest"
+        texture_filtering: "None"
+        vertex_wobble: true
+        vertex_wobble_amplitude: 0.01
+      framerate:
+        target_fps: 24
+        step_frames: 1
+      post:
+        volumetric_fog: true
+        fog_density: 0.05
+        fog_color: "#d4b647"
+        fluorescent_area_light_kelvin: 4000
+        fluorescent_flicker: true
+        chromatic_aberration: 0.003
+    discord_ingredient: "ONE impossibly high-res, hyperreal object (a photograph, a mirror, a human eye) in the low-poly world"
+    compatible_palettes:
+      - sodium_vapor_liminal
+      - moonlit_concrete
+      - fog_valley
+    compatible_voices:
+      - architectural_wide
+      - dutch_drama
+      - dolly_cinematic
+    philosophy: "The room remembers the people who left; the texture shimmer is their afterimage."
+
+  isometric_diorama:
+    name: "Isometric Diorama"
+    description: "Tiny complete worlds on a pedestal. A room you could fit in your palm."
+    reference: "BlenderNation 2026-14 weekly feature, Mohamed Chahin tiny worlds, Monument Valley aesthetic"
+    blender:
+      render_engine: "CYCLES"
+      samples: 1024
+      geometry:
+        base_tile_count: 6
+        base_tile_shape: "cube"
+        base_tile_size_m: 1.0
+        modular_kit_pieces: true
+        rounded_corners: true
+      shader:
+        base: "Principled BSDF"
+        roughness: 0.5
+        uniform_material_treatment: true
+      framerate:
+        target_fps: 24
+        step_frames: 1
+      post:
+        camera_type: "ORTHO"
+        ortho_scale: 10.0
+        camera_rotation_degrees: [54.7, 0, 45]
+        hdri_slug: "studio_small_08_2k"
+        hdri_strength: 0.3
+        area_lights_count: 3
+        area_lights_arrangement: "triangular"
+    discord_ingredient: "ONE element that breaks out of the ortho grid — a character looking at the camera, a fluid spilling off the base"
+    compatible_palettes:
+      - overcast_studio
+      - iridescent_candy
+      - golden_hour_valley
+      - fog_valley
+    compatible_voices:
+      - gods_eye_ortho
+      - architectural_wide
+    philosophy: "Miniatures feel like childhood; the god's-eye view is the original empathy engine."

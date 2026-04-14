@@ -1,0 +1,117 @@
+# ═══════════════════════════════════════════════════════════
+# DIMENSIONAL CHAOS — VOICES
+# The camera is the narrator. Lens + aperture + placement
+# is a complete rhetorical stance. Choose your voice before
+# you press render.
+# ═══════════════════════════════════════════════════════════
+
+voices:
+
+  intimate_macro:
+    name: "Intimate Macro"
+    lens_mm: 105
+    aperture: 1.8
+    sensor_mm: 36
+    focus_distance_m: 0.3
+    framing:
+      subject_fills_frame_pct: 70
+      aspect_ratio: "1:1"
+      composition_rule: "center_weighted"
+    subject_placement: [0.5, 0.55]
+    motion:
+      type: "static"
+      handheld_micro_jitter: true
+      jitter_amplitude: 0.0008
+      keyframes: null
+    when_to_use: "When the surface IS the story — fingerprints on clay, thread on plush, thin-film on chrome. The viewer should feel they could touch it."
+
+  gods_eye_ortho:
+    name: "God's Eye Ortho"
+    lens_mm: null
+    aperture: null
+    sensor_mm: null
+    focus_distance_m: null
+    framing:
+      camera_type: "ORTHO"
+      ortho_scale_range: [8, 12]
+      aspect_ratio: "4:3"
+      composition_rule: "grid_aligned"
+    subject_placement: [0.5, 0.5]
+    motion:
+      type: "static"
+      camera_rotation_degrees: [90, 0, 0]
+      camera_height_m: 30
+      keyframes: null
+    when_to_use: "For isometric dioramas and top-down architectural plans. When you want the viewer to feel like a planner, not a participant."
+
+  architectural_wide:
+    name: "Architectural Wide"
+    lens_mm: 24
+    aperture: 8.0
+    sensor_mm: 36
+    focus_distance_m: 5.0
+    framing:
+      subject_fills_frame_pct: 40
+      aspect_ratio: "16:9"
+      composition_rule: "rule_of_thirds"
+      horizon_y: 0.33
+      vertical_lines_true_vertical: true
+      tripod_static: true
+      no_camera_roll: true
+    subject_placement: [0.5, 0.5]
+    motion:
+      type: "static"
+      keyframes: null
+    when_to_use: "Brutalist sculpture, liminal spaces, establishing shots. When the environment IS the subject and the human is the scale reference."
+
+  dolly_cinematic:
+    name: "Dolly Cinematic"
+    lens_mm: 35
+    aperture: 2.0
+    sensor_mm: 36
+    focus_distance_m: 2.0
+    framing:
+      subject_fills_frame_pct: 55
+      aspect_ratio: "21:9"
+      composition_rule: "leading_lines"
+    subject_placement: [0.45, 0.5]
+    motion:
+      type: "animated"
+      motion_type: "dolly_push_in"
+      bezier_curve: true
+      duration_frames: 120
+      start_distance_m: 3.0
+      end_distance_m: 1.2
+      motion_blur: 0.5
+      shutter: 0.5
+      keyframes:
+        - frame: 1
+          position_z: 3.0
+          handle_type: "VECTOR"
+        - frame: 60
+          position_z: 1.8
+          handle_type: "AUTO"
+        - frame: 120
+          position_z: 1.2
+          handle_type: "VECTOR"
+    when_to_use: "When you need the frame to breathe forward — trailers, hero reveals, product intros. The push-in is earned, not automatic."
+
+  dutch_drama:
+    name: "Dutch Drama"
+    lens_mm: 50
+    aperture: 2.8
+    sensor_mm: 36
+    focus_distance_m: 1.5
+    framing:
+      subject_fills_frame_pct: 60
+      aspect_ratio: "16:9"
+      composition_rule: "diagonal_tension"
+      camera_roll_degrees: 12
+      camera_height_m: 0.4
+      low_angle: true
+    subject_placement: [0.35, 0.5]
+    motion:
+      type: "static"
+      subject_looking_direction: "down_at_camera"
+      keyframes: null
+    when_to_use: "When the world is wrong and the viewer should feel it. Hero shots of monsters, villains, or anything that shouldn't be looked up at."

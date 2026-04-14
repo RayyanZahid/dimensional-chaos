@@ -1,0 +1,14 @@
+__pycache__/
+*.pyc
+.venv/
+.env
+/cache/
+/render/*.png
+/render/*.blend
+/render/*.glb
+/render/*.py
+.DS_Store
+Thumbs.db
+*.egg-info/
+dist/
+build/
