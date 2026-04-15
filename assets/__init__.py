@@ -1,8 +1,9 @@
 """Dimensional Chaos — asset pipeline.
 
-Feeds 3D assets into the engine from two sources:
+Feeds 3D assets into the engine from these sources:
 - Meshy (text -> Nano Banana image -> image-to-3D -> GLB)
 - Poly Haven (CC0 HDRIs, PBR textures, models)
+- BlenderKit (curated community library; free-tier only, via in-Blender addon)
 
 Plus curated Blender primitives for when generation isn't needed.
 """
@@ -10,6 +11,13 @@ Plus curated Blender primitives for when generation isn't needed.
 from assets.meshy_bridge import MeshyBridge
 from assets.polyhaven import PolyHavenBridge
 from assets.primitives import PRIMITIVES
+from assets.blenderkit_bridge import (
+    emit_blenderkit_probe,
+    emit_blenderkit_fetch,
+    emit_blenderkit_place,
+    recipe_to_search_query,
+    ASSET_TYPES as BLENDERKIT_ASSET_TYPES,
+)
 
 
 class AssetRegistry:
@@ -46,4 +54,14 @@ class AssetRegistry:
         return name in self._items
 
 
-__all__ = ["MeshyBridge", "PolyHavenBridge", "AssetRegistry", "PRIMITIVES"]
+__all__ = [
+    "MeshyBridge",
+    "PolyHavenBridge",
+    "AssetRegistry",
+    "PRIMITIVES",
+    "emit_blenderkit_probe",
+    "emit_blenderkit_fetch",
+    "emit_blenderkit_place",
+    "recipe_to_search_query",
+    "BLENDERKIT_ASSET_TYPES",
+]
