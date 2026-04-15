@@ -18,6 +18,11 @@ voices:
       aspect_ratio: "1:1"
       composition_rule: "center_weighted"
     subject_placement: [0.5, 0.55]
+    fill_ratio: 0.7
+    subject_placement_x: 0.0
+    subject_placement_y: 0.05
+    track_to_default: true
+    fit_padding: 1.10
     motion:
       type: "static"
       handheld_micro_jitter: true
@@ -37,6 +42,11 @@ voices:
       aspect_ratio: "4:3"
       composition_rule: "grid_aligned"
     subject_placement: [0.5, 0.5]
+    fill_ratio: 0.6
+    subject_placement_x: 0.0
+    subject_placement_y: 0.0
+    track_to_default: true
+    fit_padding: 1.15
     motion:
       type: "static"
       camera_rotation_degrees: [90, 0, 0]
@@ -59,6 +69,11 @@ voices:
       tripod_static: true
       no_camera_roll: true
     subject_placement: [0.5, 0.5]
+    fill_ratio: 0.30
+    subject_placement_x: 0.33
+    subject_placement_y: -0.10
+    track_to_default: true
+    fit_padding: 1.20
     motion:
       type: "static"
       keyframes: null
@@ -75,6 +90,11 @@ voices:
       aspect_ratio: "21:9"
       composition_rule: "leading_lines"
     subject_placement: [0.45, 0.5]
+    fill_ratio: 0.50
+    subject_placement_x: -0.20
+    subject_placement_y: 0.0
+    track_to_default: true
+    fit_padding: 1.15
     motion:
       type: "animated"
       motion_type: "dolly_push_in"
@@ -110,6 +130,11 @@ voices:
       camera_height_m: 0.4
       low_angle: true
     subject_placement: [0.35, 0.5]
+    fill_ratio: 0.60
+    subject_placement_x: -0.15
+    subject_placement_y: -0.10
+    track_to_default: true
+    fit_padding: 1.10
     motion:
       type: "static"
       subject_looking_direction: "down_at_camera"

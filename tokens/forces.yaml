@@ -17,6 +17,10 @@ forces:
       - "Scale the scene by 0.1x or 10x in one axis only"
       - "Add a familiar object at 'wrong' scale — a pencil next to a building, a human next to a strawberry"
       - "Use macro focus distance (0.2m) on an object the scene treats as huge"
+    framing_modifier:
+      fill_ratio_mul: 0.30
+      add_reference_human: true
+      notes: "subject deliberately tiny in frame; 1.8m silhouette anchors scale"
     compatible_modes:
       - isometric_diorama
       - brutalist_sculpture
@@ -36,6 +40,10 @@ forces:
       - "Key light strength >3x the scene's average intensity"
       - "Color-separated lighting: warm key (3200K) + cool fill (7000K) for cinematic duality"
       - "Flicker: keyframe light strength with noise for fluorescent/fire/CRT"
+    framing_modifier:
+      fill_ratio_mul: 1.0
+      add_reference_human: false
+      notes: "no framing change — light does the work"
     compatible_modes:
       - liminal_lowpoly
       - brutalist_sculpture
@@ -56,6 +64,10 @@ forces:
       - "Place the two materials within one subject's silhouette"
       - "Use the contrast boundary as the focal point (rule-of-thirds intersection)"
       - "Light both materials with the same HDRI so the contrast is material, not lighting"
+    framing_modifier:
+      fill_ratio_mul: 1.0
+      add_reference_human: false
+      notes: "framing unchanged — contrast lives in materials, not composition"
     compatible_modes:
       - hyperreal_chrome
       - claymation_warmth
@@ -75,6 +87,10 @@ forces:
       - "Subject occupies <15% of frame area"
       - "Use atmospheric perspective (volumetric fog density 0.2+) to dissolve the space"
       - "Camera FOV wide (24mm or wider) to maximize the void"
+    framing_modifier:
+      fill_ratio_mul: 0.40
+      add_reference_human: false
+      notes: "subject < 25% of frame, 75%+ empty"
     compatible_modes:
       - brutalist_sculpture
       - studio_ghibli_nature
@@ -95,6 +111,10 @@ forces:
       - "Rigid body sim with gravity vector (0, 0, +9.8) for up-ward falling"
       - "Frozen cloth sim mid-billow, pinned to invisible wind source"
       - "Particle emission from a surface that shouldn't emit (skin, concrete, paper)"
+    framing_modifier:
+      fill_ratio_mul: 0.85
+      add_reference_human: false
+      notes: "slight pull-back so impossible relationship reads"
     compatible_modes:
       - hyperreal_chrome
       - claymation_warmth
@@ -116,6 +136,10 @@ forces:
       - "Keep visible poly count — disable auto-smooth on a signature surface"
       - "Bake a 'thumbprint' noise map into the normal map of organic assets"
       - "Leave one modifier unapplied so the non-destructive history is visible in Outliner"
+    framing_modifier:
+      fill_ratio_mul: 1.10
+      add_reference_human: false
+      notes: "slightly tighter — viewer needs to see imperfection"
     compatible_modes:
       - claymation_warmth
       - studio_ghibli_nature

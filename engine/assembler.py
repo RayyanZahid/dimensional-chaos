@@ -6,6 +6,7 @@ from typing import Any
 
 from .cameras import add_camera
 from .compositor import apply_mode_post
+from .framing import emit_frame_scene
 from .materials import mode_to_material_factory
 from .rigs import palette_to_rig
 
@@ -213,6 +214,8 @@ def _subject_primitive(mode_key: str, subject: str) -> list[str]:
             "_hero = bpy.context.view_layer.objects.active",
             "bpy.ops.object.shade_smooth()",
         ]
+    # Standardize hero name so framing pass can find it.
+    lines += ["_hero.name = 'DC_Hero'"]
     # Ground plane (always — never float the subject in space).
     lines += [
         "bpy.ops.mesh.primitive_plane_add(size=10.0, location=(0.0, 0.0, 0.0))",
@@ -350,6 +353,19 @@ class Scene:
         """Return the voice entry."""
         return self.tokens.get("voices", {}).get(self.recipe.voice, {}) or {}
 
+    def _forces_tokens(self) -> dict[str, Any]:
+        """Return the full forces map (key -> entry)."""
+        return self.tokens.get("forces", {}) or {}
+
+    def _apply_framing(self) -> list[str]:
+        """Spatial-awareness pass — bbox-fit camera, normalize subject, optional scale ref."""
+        return [f"# framing: {self.recipe.voice} (+forces: {', '.join(self.recipe.forces)})"] + emit_frame_scene(
+            voice_key=self.recipe.voice,
+            voice_tokens=self._voice_tokens(),
+            force_keys=self.recipe.forces,
+            forces_tokens=self._forces_tokens(),
+        ) + [""]
+
     def assemble(self) -> str:
         """Compose the complete Blender Python script and cache the string."""
         if self._assembled is not None:
@@ -362,6 +378,7 @@ class Scene:
         parts += _apply_voice(self._voice_tokens(), self.recipe.voice)
         parts += _subject_primitive(self.recipe.mode, self.recipe.subject)
         parts += _apply_forces(self.recipe.forces, self.recipe.mode)
+        parts += self._apply_framing()
         parts += _apply_compositor(self.recipe.mode)
         parts += _final_render_settings(self._mode_tokens())
         self._assembled = "\n".join(parts) + "\n"

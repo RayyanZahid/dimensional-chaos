@@ -7,6 +7,7 @@ from typing import Any
 import yaml
 
 from .assembler import Recipe, Scene
+from .framing import emit_compute_bbox, emit_fit_camera, emit_frame_scene
 
 __all__ = [
     "Recipe",
@@ -17,6 +18,9 @@ __all__ = [
     "VOICES",
     "FORCES",
     "TOKENS_DIR",
+    "emit_compute_bbox",
+    "emit_fit_camera",
+    "emit_frame_scene",
 ]
 
 # Canonical keys — source of truth for validation before token files land.
