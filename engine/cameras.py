@@ -11,7 +11,7 @@ def _emit_base_camera(loc: tuple[float, float, float], rot: tuple[float, float, 
     """Create a camera at loc/rot and set it active."""
     return [
         f"bpy.ops.object.camera_add(location={loc}, rotation={rot})",
-        "_cam = bpy.context.object",
+        "_cam = bpy.context.view_layer.objects.active",
         "_cam.name = 'DC_Camera'",
         "bpy.context.scene.camera = _cam",
     ]
@@ -83,7 +83,7 @@ def _dolly_cinematic(v: dict[str, Any]) -> list[str]:
     out += [
         "# dolly path (bezier curve, 120 frames)",
         "bpy.ops.curve.primitive_bezier_curve_add(location=(0.0, 0.0, 1.6))",
-        "_path = bpy.context.object",
+        "_path = bpy.context.view_layer.objects.active",
         "_path.name = 'DC_DollyPath'",
         "_path.data.path_duration = 120",
         "_path.data.use_path = True",

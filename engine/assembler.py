@@ -91,10 +91,21 @@ def _header(recipe: Recipe) -> list[str]:
 
 
 def _scene_reset() -> list[str]:
-    """Wipe Blender to an empty scene."""
+    """Wipe scene contents without disturbing addons or preferences.
+
+    `bpy.ops.wm.read_factory_settings(use_empty=True)` was the obvious choice
+    but it kills addon state — including the Blender MCP socket addon. So we
+    do a manual datablock cleanup that leaves the runtime intact.
+    """
     return [
-        "# reset to empty scene",
-        "bpy.ops.wm.read_factory_settings(use_empty=True)",
+        "# clean scene contents (addon state preserved — no factory reset)",
+        "for _o in list(bpy.data.objects): bpy.data.objects.remove(_o, do_unlink=True)",
+        "for _m in list(bpy.data.meshes): bpy.data.meshes.remove(_m, do_unlink=True)",
+        "for _mat in list(bpy.data.materials): bpy.data.materials.remove(_mat, do_unlink=True)",
+        "for _lt in list(bpy.data.lights): bpy.data.lights.remove(_lt, do_unlink=True)",
+        "for _cm in list(bpy.data.cameras): bpy.data.cameras.remove(_cm, do_unlink=True)",
+        "for _wld in list(bpy.data.worlds):",
+        "    if _wld.use_nodes: _wld.node_tree.nodes.clear()",
         "",
     ]
 
@@ -159,26 +170,26 @@ def _subject_primitive(mode_key: str, subject: str) -> list[str]:
     if "teapot" in subject_lower or mode_key == "hyperreal_chrome":
         lines += [
             "bpy.ops.mesh.primitive_uv_sphere_add(radius=0.5, location=(0.0, 0.0, 0.6))",
-            "_hero = bpy.context.object",
+            "_hero = bpy.context.view_layer.objects.active",
             "bpy.ops.object.shade_smooth()",
         ]
     elif mode_key == "liminal_lowpoly":
         lines += [
             "bpy.ops.mesh.primitive_cube_add(size=1.2, location=(0.0, 0.0, 0.6))",
-            "_hero = bpy.context.object",
+            "_hero = bpy.context.view_layer.objects.active",
             "bpy.ops.object.modifier_add(type='DECIMATE')",
             "_hero.modifiers[-1].ratio = 0.25",
         ]
     elif mode_key == "isometric_diorama":
         lines += [
             "bpy.ops.mesh.primitive_cylinder_add(radius=0.45, depth=1.0, location=(0.0, 0.0, 0.5))",
-            "_hero = bpy.context.object",
+            "_hero = bpy.context.view_layer.objects.active",
             "bpy.ops.object.shade_smooth()",
         ]
     elif mode_key == "plushcore_soft":
         lines += [
             "bpy.ops.mesh.primitive_ico_sphere_add(radius=0.55, subdivisions=4, location=(0.0, 0.0, 0.55))",
-            "_hero = bpy.context.object",
+            "_hero = bpy.context.view_layer.objects.active",
             "bpy.ops.object.modifier_add(type='SUBSURF')",
             "_hero.modifiers[-1].levels = 2",
             "bpy.ops.object.shade_smooth()",
@@ -186,26 +197,26 @@ def _subject_primitive(mode_key: str, subject: str) -> list[str]:
     elif mode_key == "brutalist_sculpture":
         lines += [
             "bpy.ops.mesh.primitive_cube_add(size=1.6, location=(0.0, 0.0, 0.8))",
-            "_hero = bpy.context.object",
+            "_hero = bpy.context.view_layer.objects.active",
             "bpy.ops.object.modifier_add(type='BEVEL')",
             "_hero.modifiers[-1].width = 0.02",
         ]
     elif mode_key == "studio_ghibli_nature":
         lines += [
             "bpy.ops.mesh.primitive_ico_sphere_add(radius=0.45, subdivisions=3, location=(0.0, 0.0, 0.5))",
-            "_hero = bpy.context.object",
+            "_hero = bpy.context.view_layer.objects.active",
             "bpy.ops.object.shade_smooth()",
         ]
     else:
         lines += [
             "bpy.ops.mesh.primitive_monkey_add(size=1.0, location=(0.0, 0.0, 0.6))",
-            "_hero = bpy.context.object",
+            "_hero = bpy.context.view_layer.objects.active",
             "bpy.ops.object.shade_smooth()",
         ]
     # Ground plane (always — never float the subject in space).
     lines += [
         "bpy.ops.mesh.primitive_plane_add(size=10.0, location=(0.0, 0.0, 0.0))",
-        "_ground = bpy.context.object",
+        "_ground = bpy.context.view_layer.objects.active",
         "_ground.name = 'DC_Ground'",
         "if len(_ground.data.materials) == 0:",
         "    _ground.data.materials.append(_mat)",
@@ -224,13 +235,13 @@ def _apply_forces(forces: list[str], mode_key: str) -> list[str]:
             "# scale_distortion: hero oversized, secondary minis",
             "_hero.scale = (2.0, 2.0, 2.0)",
             "bpy.ops.mesh.primitive_cube_add(size=0.12, location=(1.2, -0.8, 0.06))",
-            "bpy.context.object.name = 'DC_Mini'",
+            "bpy.context.view_layer.objects.active.name = 'DC_Mini'",
         ]
     if "light_as_character" in forces:
         out += [
             "# light_as_character: visible volumetric beam",
             "bpy.ops.object.light_add(type='SPOT', location=(-1.5, -2.5, 3.0))",
-            "_beam = bpy.context.object",
+            "_beam = bpy.context.view_layer.objects.active",
             "_beam.name = 'DC_Beam'",
             "_beam.data.energy = 3000.0",
             "_beam.data.spot_size = 0.6",
@@ -241,7 +252,7 @@ def _apply_forces(forces: list[str], mode_key: str) -> list[str]:
         out += [
             "# material_contrast: add a matte counterpart cube nearby",
             "bpy.ops.mesh.primitive_cube_add(size=0.8, location=(0.9, 0.4, 0.4))",
-            "_counter = bpy.context.object",
+            "_counter = bpy.context.view_layer.objects.active",
             "_counter.name = 'DC_ContrastMate'",
             "_contrast_mat = bpy.data.materials.new(name='DC_ContrastMatte')",
             "_contrast_mat.use_nodes = True",
@@ -269,7 +280,7 @@ def _apply_forces(forces: list[str], mode_key: str) -> list[str]:
             "_hero.location.z += 0.4",
             "_hero.rotation_euler[0] += 0.35",
             "bpy.ops.object.light_add(type='POINT', location=(0.0, 0.0, 0.15))",
-            "_under = bpy.context.object",
+            "_under = bpy.context.view_layer.objects.active",
             "_under.name = 'DC_UnderGlow'",
             "_under.data.energy = 80.0",
             "_under.data.color = (1.0, 0.9, 0.7)",
@@ -278,7 +289,7 @@ def _apply_forces(forces: list[str], mode_key: str) -> list[str]:
         out += [
             "# hand_evidence: add visible imperfection (fingerprint plane above ground)",
             "bpy.ops.mesh.primitive_plane_add(size=0.4, location=(0.2, 0.0, 0.001))",
-            "_print = bpy.context.object",
+            "_print = bpy.context.view_layer.objects.active",
             "_print.name = 'DC_Fingerprint'",
             "_pm = bpy.data.materials.new(name='DC_Smudge')",
             "_pm.use_nodes = True",

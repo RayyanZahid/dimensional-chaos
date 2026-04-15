@@ -17,7 +17,7 @@ from pathlib import Path
 
 import requests
 
-BASE_URL = "https://api.meshy.ai"
+BASE_URL = "https://api.meshy.ai/openapi"
 TIMEOUT = 60
 CACHE_ROOT = Path("./cache/meshy")
 
